@@ -1,8 +1,12 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const { isEmpty } = require('lodash');
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
+const bodyParser = require("body-parser");
+
+const routes = require("./routes");
 
 const app = express();
 const port = 5000;
@@ -26,7 +30,7 @@ const connectDatabase = async (req, res, next) => {
 }
 
 app.use(cors());
-app.use(connectDatabase);
+connectDatabase;
 
 
 app.get('/:searchValue', async (req, res) => {
