@@ -1,38 +1,63 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { InputGroup, Input, Button } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
-async function callADDapi() {
 
-  }
 
 export default function AddMovie() {
-    const [MovieValue, setMovieValue] = useState("");
-    const [YearValue, setYearValue] = useState("");
-    const [PosterValue, setPosterValue] = useState("");
-    const [IdValue, setIdValue] = useState("");
+    const history = useHistory();
+    const [title, setMovieValue] = useState("");
+    const [year, setYearValue] = useState("");
+    const [poster, setPosterValue] = useState("");
+    const [imdbId, setIdValue] = useState("");
+
+    async function callADDapi() {
+        axios
+            .post(`http://localhost:5000/addMovie`, {
+                title,
+                year,
+                poster,
+                imdbId
+            })
+            .then(res => {
+                console.log(res)
+                console.log(res.data)
+            })
+        alert(`${title} Movie is Inserted`)
+    
+    }
+    
     return (
         <section className="search-section">
             <InputGroup>
                 <Input
                     placeholder=" Enter movie name to ADD...."
-                    onChange={MovieValue => setMovieValue(MovieValue.target.value)}
+                    onChange={title => setMovieValue(title.target.value)}
                 />
                 <Input
                     placeholder="Year"
-                    onChange={YearValue => setYearValue(YearValue.target.value)}
+                    onChange={year => setYearValue(year.target.value)}
                 />
                 <Input
                     placeholder="poster url"
-                    onChange={PosterValue => setPosterValue(PosterValue.target.value)}
+                    onChange={poster => setPosterValue(poster.target.value)}
                 />
                 <Input
                     placeholder="imdbId"
-                    onChange={IdValue => setIdValue(IdValue.target.value)}
+                    onChange={imdbId => setIdValue(imdbId.target.value)}
                 />
-                
+
                 <Button color="success" onClick={callADDapi} >
                     ADD movie
-      </Button>
+                </Button>
+                <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => history.goBack()}
+                >
+                    Go Back
+                </button>
             </InputGroup>
         </section>
     );

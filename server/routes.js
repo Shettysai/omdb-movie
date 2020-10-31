@@ -21,8 +21,8 @@ module.exports = function(){
             poster,
             imdbId
         });
-        await movie.save();
-        console.log(movie);
+       await movie.save();
+       console.log(movie);
         res.json({message:"Movie added successfully"});
     });
 

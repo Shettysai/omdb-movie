@@ -40,8 +40,6 @@ export default function App() {
       .catch((error) => console.log("error", error));
   }
 
-  function onClick4Booking(imdbID) { }
-
   return (
     <Container style={{ marginTop: "60px" }}>
 
@@ -69,7 +67,7 @@ export default function App() {
                     <CardBody className="bg-secondary">
                       <CardTitle>{movie.title}</CardTitle>
                       <CardText>
-                        {movie.tear}-{movie.type}
+                        {movie.year}
                       </CardText>
                       <Link
                         to={`/booking-page/${movie.imdbId}`}

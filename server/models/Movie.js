@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const Movie = mongoose.model('Movie', {
      title: String,
-     imdbId : String,
+     year : String,
      poster : String,
-     year : String  
+     imdbId : String  
 });
 
 module.exports = Movie;
